@@ -1,26 +1,57 @@
-@extends('layouts.app')
+ @extends('layouts.app')
 @section('content')
-        <div class="card" style="width: 18rem;">
-        	<center> Total Data Obat</center>
-  <div class="card-body" style="background-color: #138496">
-    <h5 class="card-title"></h5>
-    <p class="card-text" style="size: 20px"><center>  {{ $countdataobat }} </center></p>
-  </div>
-</div><br><br>
+<!-- Example single danger button -->
+<div class="row">
+                    <div class="col-xl-3 col-sm-6">
+                      <div class="card card-mini mb-4">
+                        <div class="card-body">
+                          <h2 class="mb-1">{{ $countdataobat }}</h2>
+                          <p>Online Signups</p>
+                          <div class="chartjs-wrapper">
+                            <canvas id="barChart" width="173" height="100" class="chartjs-render-monitor" style="display: block; width: 173px; height: 100px;"></canvas>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                      <div class="card card-mini  mb-4">
+                        <div class="card-body">
+                          <h2 class="mb-1">{{ $countdatajenisobat }}</h2>
+                          <p>New </p>
+                          <div class="chartjs-wrapper">
+                            <canvas id="dual-line" width="173" height="100" class="chartjs-render-monitor" style="display: block; width: 173px; height: 100px;"></canvas>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                      <div class="card card-mini mb-4">
+                        <div class="card-body">
+                          <h2 class="mb-1">{{ $countdataadmin }}</h2>
+                          <p>Monthly </p>
+                          <div class="chartjs-wrapper">
+                            <canvas id="area-chart" width="173" height="100" class="chartjs-render-monitor" style="display: block; width: 173px; height: 100px;"></canvas>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                      <div class="card card-mini mb-4">
+                        <div class="card-body">
+                          <h2 class="mb-1">{{ $countdatasuplier }}</h2>
+                          <p>Total Revenue</p>
+                          <div class="chartjs-wrapper">
 
-  <div class="card" style="width: 18rem;">
-        	<center> Total Data Jenis Obat</center>
-  <div class="card-body" style="background-color: #6D7FCC">
-    <h5 class="card-title"></h5>
-    <p class="card-text" style="size: 20px"><center>  {{ $countdatajenisobat }} </center></p>
-  </div>
-</div><br><br>
-
-  <div class="card" style="width: 18rem;">
-        	<center> Total Data Admin</center>
-  <div class="card-body" style="background-color: #6AB5CD">
-    <h5 class="card-title"></h5>
-    <p class="card-text" style="size: 20px"><center>  {{ $countdataadmin }} </center></p>
-  </div>
+                            <canvas id="line" width="173" height="100" class="chartjs-render-monitor" style="display: block; width: 173px; height: 100px;"></canvas>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+<br>
+<div class="panel">
+  <div id="chartNilai"></div>
 </div>
+<br>
+<br>
 @endsection('content')

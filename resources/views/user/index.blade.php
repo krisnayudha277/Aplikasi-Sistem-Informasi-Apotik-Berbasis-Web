@@ -15,24 +15,20 @@
  <table id="datatable" class="table table-bordered table-hover table-striped tblind">
             <thead><tr>
          <th>Id</th>
-        <th>Kode Obat</th>
-        <th>Kode Jenis</th>
-        <th>Kode Suplier</th>
         <th>Nama</th>
         <th>Harga</th>
         <th>Des</th>
+        <th>Stok</th>
     </tr>
             </thead>
             <tbody>
                 @foreach($obat as $p)
                 <tr>
         <td>{{  $p->id }}</td>
-        <td>{{  $p->kode_obat }}</td>
-        <td>{{  $p->kode_jenis }}</td>
-        <td>{{  $p->kode_suplier }}</td>
         <td>{{  $p->nama_obat }}</td>
         <td>{{  $p->harga_jual_obat }}</td>
         <td>{{  $p->description }}</td>
+        <td>{{  $p->stok }}</td>
                 </tr>
                 @endforeach
             </tbody>

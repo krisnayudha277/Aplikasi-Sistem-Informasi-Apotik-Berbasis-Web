@@ -60,6 +60,8 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+         $user=\App\User::find($id);
+        return view('/admin/setting',['user'=>$user]);
     }
 
     /**
@@ -72,6 +74,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user= \App\User::find($id);
+        $user->update($request->all());
+        return redirect('/admin/setting')->with('sukses','Data berhasil diupdate');
     }
 
     /**

@@ -6,10 +6,23 @@
        Home > Admin
     </div>
     <div class="card-body">
-<!--          <a href="{{route ('home')}}" class="btn btn-info">Data Obat</a> -->
-  <!--   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-     Tambah
-    </button> -->
+        <a href="/admincrud/data_obat" class="btn btn-primary" target="_blank">CETAK PDF</a>
+        <a href="{{route ('eksporexcel3')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+
+    {{-- notifikasi form validasi --}}
+    @if ($errors->has('file'))
+    <span class="invalid-feedback" role="alert">
+      <strong>{{ $errors->first('file') }}</strong>
+    </span>
+    @endif
+ 
+    {{-- notifikasi sukses --}}
+    @if ($sukses = Session::get('sukses'))
+    <div class="alert alert-success alert-block">
+      <button type="button" class="close" data-dismiss="alert">×</button> 
+      <strong>{{ $sukses }}</strong>
+    </div>
+    @endif
         <br/>
         <br/>
         <table id="datatable" class="table table-bordered table-hover table-striped tblind">
@@ -17,7 +30,6 @@
          <th>Id</th>
         <th>Name</th>
         <th>Email</th>
-        <th>Password</th>
         <th style="width: 200px">Aksi</th>
     </tr>
             </thead>
@@ -27,7 +39,6 @@
         <td>{{  $p->id }}</td>
         <td>{{  $p->name }}</td>
         <td>{{  $p->email }}</td>
-        <td>{{  $p->password }}</td>
                     <td>
                         <a href="/edit/{{ $p->id }}" class="btn btn-warning">Detail</a>
                     </td>

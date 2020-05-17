@@ -15,7 +15,7 @@ class CreateTblJenisTable extends Migration
     {
         Schema::create('tbl_jenis', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_obat');
+            $table->string('kode_jenis')->unique();
             $table->string('nama_jenis');
             $table->string('description');
             $table->string('aktif_jenis');

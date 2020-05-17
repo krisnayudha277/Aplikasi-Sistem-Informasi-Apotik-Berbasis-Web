@@ -4,6 +4,8 @@ namespace App\Imports;
 
 use App\Obat;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
 
 class DataObat2 implements ToModel
 {

@@ -17,7 +17,8 @@ protected $fillable = [
 		"kode_suplier",
 		"nama_obat",
 		"harga_jual_obat",
-		"description"
+		"description",
+		"stok"
 ];
 protected $dates = ['deleted_at'];
 

@@ -25,11 +25,12 @@
 				<th>Nama Obat</th>
 				<th>Harga Jual_obat</th>
 				<th>Description</th>
+				<th>Stok</th>
 			</tr>
 		</thead>
 		<tbody>
-	<!-- 		@php $i=1 @endphp
-			@foreach($obat3 as $p) -->
+			@php $i=1 @endphp
+			@foreach($obat3 as $p)
 			<tr>
 				<td>{{ $i++ }}</td>
 				<td>{{$p->kode_obat}}</td>
@@ -38,6 +39,7 @@
 				<td>{{$p->nama_obat}}</td>
 				<td>{{$p->harga_jual_obat}}</td>
 				<td>{{$p->description}}</td>
+				<td>{{$p->stok}}</td>
 			</tr>
 <!-- 			@endforeach -->
 		</tbody>

@@ -24,8 +24,7 @@
         <th>Kode Suplier</th>
         <th>Nama</th>
         <th>Harga</th>
-        <th>Des</th>
-        <th style="width: 200px">Aksi</th>
+        <th>Aksi</th>
     </tr>
             </thead>
             <tbody>
@@ -37,7 +36,6 @@
         <td>{{  $p->kode_suplier }}</td>
         <td>{{  $p->nama_obat }}</td>
         <td>{{  $p->harga_jual_obat }}</td>
-        <td>{{  $p->description }}</td>
                     <td>
                         <a href="/obat/kembalikan/{{ $p->id }}" class="btn btn-warning">Kembalikan</a>
                         <a href="/obat/hapus_permanen/{{ $p->id }}" class="btn btn-danger">Hapus Permanen</a>

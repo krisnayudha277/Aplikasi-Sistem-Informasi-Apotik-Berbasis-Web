@@ -1,6 +1,29 @@
+@section('js')
+<script type="text/javascript">
+
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#showgambar').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#inputgambar").change(function () {
+        readURL(this);
+    });
+
+</script>
+
+@stop
 @extends('layouts.app')
 
 @section('content')
+
     <div class="card mt-5">
           @if(session('sukses'))
           <div class="alert alert-success" role="alert">
@@ -11,7 +34,7 @@
         Home > Data Obat
     </div>
     <div class="card-body">
-    <a href="{{route ('eksporexcel')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+    <a href="{{ route('eksporexcel')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
 
     {{-- notifikasi form validasi --}}
     @if ($errors->has('file'))
@@ -63,9 +86,7 @@
 <!--     <a href="{{route ('jenisobat.index')}}" class="btn btn-info">Jenis</a>
     <a href="{{route ('admin.index')}}" class="btn btn-info">Admin</a>
     <a href="/admincrud/sampah_obat" class="btn btn-info">Data Trash</a> -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-     Tambah
-    </button>
+      <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('obat.create') }}">Add Category</a>
         <br/>
         <br/>
         <table id="datatable" class="table table-bordered table-hover table-striped tblind">
@@ -73,10 +94,9 @@
          <th>Id</th>
         <th>Kode Obat</th>
         <th>Kode Jenis</th>
-        <th>Kode Suplier</th>
         <th>Nama</th>
         <th>Harga</th>
-        <th>Des</th>
+         <th>Stok</th>
         <th style="width: 200px">Aksi</th>
     </tr>
             </thead>
@@ -86,12 +106,11 @@
         <td>{{  $p->id }}</td>
         <td>{{  $p->kode_obat }}</td>
         <td>{{  $p->kode_jenis }}</td>
-        <td>{{  $p->kode_suplier }}</td>
         <td>{{  $p->nama_obat }}</td>
         <td>{{  $p->harga_jual_obat }}</td>
-        <td>{{  $p->description }}</td>
+                <td>{{  $p->stok }}</td>
                     <td>
-                        <a href="#" class="btn btn-success detail">Detail</a>
+                        <a href="/detail_obat/{{ $p->id }}" class="btn btn-success detail">Detail</a>
                         <a href="/edit/{{ $p->id }}" class="btn btn-warning">Edit</a>
                         <a href="/obat/hapus/{{ $p->id }}" class="btn btn-danger">Hapus</a>
                     </td>
@@ -100,70 +119,5 @@
             </tbody>
         </table>
     </div>
-</div>
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Form Tambah</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-        <form action="/create" method="POST">
-            {{csrf_field()}}
-  <div class="form-group">
-    <label for="exampleInputEmail1">Id</label>
-    <input name="id" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Kode">
-  </div>
-
-  <div class="form-group">
-    <label for="exampleInputPassword1">Kode Obat</label>
-    <input name="kode_obat" type="text" class="form-control" id="exampleInputPassword1" placeholder="Kode Obat">
-  </div>
-
-    <div class="form-group">
-    <label for="exampleFormControlSelect1">Kode Jenis</label>
-    <select name="kode_jenis" class="form-control" id="exampleFormControlSelect1">
-      <option value="Padat">padat</option>
-      <option value="Cair">cair</option>
-      <option value="Gas">gas</option>
-      <option value="Larutan">larutan</option>
-      <option value="Setengah">setengah</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="exampleInputPassword1">Kode Suplier</label>
-    <input name="kode_suplier" type="text" class="form-control" id="exampleInputPassword1" placeholder="Kode Suplier">
-  </div>
-
-  <div class="form-group">
-    <label for="exampleInputEmail1">Nama Obat</label>
-    <input name="nama_obat" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-  </div>
-
-  <div class="form-group">
-    <label for="exampleInputPassword1">Harga Obat</label>
-    <input name="harga_jual_obat" type="text" class="form-control" id="exampleInputPassword1" placeholder="Harga">
-  </div>
-
-  <div class="form-group">
-    <label for="exampleInputPassword1">Description</label>
-    <input name="description" type="text" class="form-control" id="exampleInputPassword1" placeholder="Harga">
-  </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
+</div><br><br>
 @endsection('content')

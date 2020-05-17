@@ -45,29 +45,20 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                       
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
+                                    
                                 </button><br>
 
-                                @if (Route::has('password.request'))
+                                <!-- @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
-                                @endif
+                                @endif -->
                             </div>
                         </div>
                     </form>
@@ -75,7 +66,6 @@
                 Don't have an account? <a class="nav-link" href="{{ route('register') }}">{{ __('Create new one') }}</a><br>
                 <a href="/user/index" class="btn btn-primary">Login As Guest</a>
               </div>
-            </form>
 
             <div class="text-center mt-5 text-small">
               Copyright &copy; Your Company. Made with 💙 by Stisla
@@ -87,7 +77,7 @@
           </div>
         </div>
         <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative ">
-           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1975.7245575683426!2d112.61348264812001!3d-7.952453344467513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78827f2d620975%3A0xf19b7459bbee5ed5!2sUniversitas%20Brawijaya!5e0!3m2!1sid!2sid!4v1584035972589!5m2!1sid!2sid" width="990" height="660" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1975.7245575683426!2d112.61348264812001!3d-7.952453344467513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78827f2d620975%3A0xf19b7459bbee5ed5!2sUniversitas%20Brawijaya!5e0!3m2!1sid!2sid!4v1584035972589!5m2!1sid!2sid" width="890" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
           
         </div>
       </div>

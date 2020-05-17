@@ -10,12 +10,57 @@
         Home > Data Jenis
     </div>
     <div class="card-body">
+<a href="{{route ('eksporexcel2')}}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+
+    {{-- notifikasi form validasi --}}
+    @if ($errors->has('file'))
+    <span class="invalid-feedback" role="alert">
+      <strong>{{ $errors->first('file') }}</strong>
+    </span>
+    @endif
+ 
+    {{-- notifikasi sukses --}}
+    @if ($sukses = Session::get('sukses'))
+    <div class="alert alert-success alert-block">
+      <button type="button" class="close" data-dismiss="alert">×</button> 
+      <strong>{{ $sukses }}</strong>
+    </div>
+    @endif
+ 
+    <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
+      IMPORT EXCEL
+    </button>
+ 
+    <!-- Import Excel -->
+    <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <form method="POST" action="/jenisobat/index" enctype="multipart/form-data">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+            </div>
+            <div class="modal-body">
+ 
+              {{ csrf_field() }}
+ 
+              <label>Pilih file excel</label>
+              <div class="form-group">
+                <input type="file" name="file" required="required">
+              </div>
+ 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Import</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
           <a href="/admincrud/data_jenis_obat" class="btn btn-primary" target="_blank">CETAK PDF</a>
 <!--     <a href="{{route ('admin.index')}}" class="btn btn-info">Admin</a>
     <a href="{{route ('home')}}" class="btn btn-info">Obat</a> -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-     Tambah
-    </button>
+            <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('jenisobat.create') }}">Add Category</a>
         <br/>
         <br/>
         <table id="datatable" class="table table-bordered table-hover table-striped tblind">
@@ -39,9 +84,9 @@
         <td>{{  $p->aktif_jenis }}</td>
         <td>{{  $p->harga_jual_obat }}</td>
                     <td>
-                        <a href="#" class="btn btn-success detail">Detail</a>
+                        <a href="/detail_jenis/{{ $p->id }}" class="btn btn-success detail">Detail</a>
                         <a href="/edit_jenis/{{ $p->id }}" class="btn btn-warning">Edit</a>
-                        <a href="/jenisobat/hapus/{{ $p->id }}" class="btn btn-danger">Hapus</a>
+                        <a href="{{ route('jenis.hapus', ['id'=>$p->id ]) }}" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
                 @endforeach
@@ -52,7 +97,7 @@
 
 
 </script>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -63,7 +108,7 @@
       </div>
       <div class="modal-body">
 
-        <form action="/jenis/create2" method="POST">
+        <form action="/jenisobat/index" method="POST">
             {{csrf_field()}}
 
   <div class="form-group">
@@ -74,13 +119,7 @@
 
   <div class="form-group">
     <label for="exampleFormControlSelect1">Jenis</label>
-    <select name="kode_jenis" class="form-control" id="exampleFormControlSelect1">
-      <option value="Padat">padat</option>
-      <option value="Cair">cair</option>
-      <option value="Gas">gas</option>
-      <option value="Larutan">larutan</option>
-      <option value="Setengah">setengah</option>
-    </select>
+ <input name="kode_jenis" type="text" class="form-control" id="exampleInputPassword1" placeholder="Nama Jenis">
   </div>
 
 
@@ -108,6 +147,11 @@
     <input name="harga_jual_obat" type="text" class="form-control" id="exampleInputPassword1" placeholder="Harga">
   </div>
 
+   <div class="form-group">
+    <label for="exampleInputPassword1">Gambar</label><br>
+    <input type="file" id="inputgambar" name="photo" required="required">
+  </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -116,5 +160,5 @@
       </form>
     </div>
   </div>
-</div>
+</div> -->
 @endsection('content')

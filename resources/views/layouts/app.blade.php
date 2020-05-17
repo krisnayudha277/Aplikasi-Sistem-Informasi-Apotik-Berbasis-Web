@@ -4,8 +4,26 @@
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style type="text/css">
+      body{
+   background:#a5b5c5;
+   background:lightblue !important;
+}
 
-    <title>Apotik Kimia Furma</title>
+.box {
+   background: #fff;
+   border-radius: 4px;
+   padding-bottom: 100%;
+}
+
+.col-lg-2, .col-md-3, .col-xs-6{
+    margin-top: 30px !important;
+}
+    </style>
+
+    <title>Apotik Kimia Furma</title>  
+    <link href="https://unpkg.com/sleek-dashboard/dist/assets/css/sleek.min.css" rel="stylesheet"/>
+    <script src="https://unpkg.com/sleek-dashboard/dist/assets/js/sleek.bundle.js"></script>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
@@ -13,7 +31,7 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="style2.css">
+ <!--    <link rel="stylesheet" href="style2.css"> -->
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
@@ -196,6 +214,7 @@
   })
 
 </script>
+
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
@@ -216,7 +235,54 @@
             });
         });
     </script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+      Highcharts.chart('chartNilai', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Monthly Average Medic'
+    },
+    subtitle: {
+        text: 'Source: KimiaFurma'
+    },
+    xAxis: {
+        categories: {!!json_encode($categories ?? '')!!},
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Nilai'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Nama Obat',
+        data: {!!json_encode($data ?? '')!!}
 
+    }]
+});
+    </script>
+  @section('js')
+
+  @show
+  
+  @yield('scripts')
 </body>
 
 </html>
